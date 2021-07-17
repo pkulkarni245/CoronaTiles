@@ -5,7 +5,7 @@
 //#include<dos.h>
 //#include<conio.h>
 //#include<windows.h>
-float bspd=0.02; // block dx value
+float bspd=0.1; // block dx value
 char name[25];
 float b1x=50.0,b1y=0;//block 1 init position
 float hm=0.0;//copter moving dy value
@@ -46,10 +46,11 @@ void drawcopter(){
 			glVertex2f(xb,yb);
 		}
 	glEnd();
-	glColor3f(0.7,1.0,1.0);
+	glColor3f(0.5,0.7,0.7);
 	glRectf(4,28.9,12,39.9);//body
-	glColor3f(0.7,1.0,1.0);
+	glColor3f(0.7,0.8,1.0);
 	glRectf(2,32,3.9,39.9);//left hand
+	glRectf(12.2,32,14.1,39.9);//right hand
 	glColor3f(1.0,1.0,0.6);
 	glBegin(GL_TRIANGLE_FAN);
 		glVertex2f(3,31);
@@ -61,7 +62,7 @@ void drawcopter(){
 		}
 	glEnd();
 	glColor3f(0.7,1.0,1.0);
-	glRectf(12.1,32,14,39.9);//right hand
+	
 	glColor3f(1.0,1.0,0.6);
 	glBegin(GL_TRIANGLE_FAN);
 		glVertex2f(13,31);
@@ -72,9 +73,9 @@ void drawcopter(){
 			glVertex2f(xb,yb);
 		}
 	glEnd();
-	glColor3f(0.7,1.0,1.0);
-	glRectf(4.5,18,7.5,28.8);//left leg
-	glRectf(8.5,18,11.5,28.8);//right leg
+	glColor3f(0.2,0.2,0.6);
+	glRectf(4.5,18,7.5,28.5);//left leg
+	glRectf(8.5,18,11.5,28.5);//right leg
 	glColor3f(0.7,0.0,0.7);
 	glRectf(5,16.8,7,17.9);//right leg
 	glRectf(9,16.8,11,17.9);//right leg
@@ -117,7 +118,7 @@ void display(void){
 		exit(0);
 	}else if(wflag==1){//Welcome Screen
 		wflag=0;
-		glColor3f(0.0,1,0.7);
+		glColor3f(0.3,0.6,0.3);
 		glRectf(0.0,0.0,100.0,10.0);//ceil
 		glRectf(0.0,100.0,100.0,90.0);//floor
 		glColor3f(1.0,1.0,0.0);
@@ -136,13 +137,13 @@ void display(void){
 		if(sci%50==0&&lflag==1){
 			lflag=0; //make level_flag=0
 			level++;//increase level by 1
-			bspd+=0.01;//increase block_dx_speed by 0.01
+			bspd+=0.05;//increase block_dx_speed by 0.01
 		}
 		else if(sci%50!=0&&lflag!=1){//within every level make level_flag=1
 			lflag=1;
 		}
 		glPushMatrix();
-		glColor3f(0.0,1,0.7);
+		glColor3f(0.3,0.6,0.3);
 		glRectf(0.0,0.0,100.0,10.0); //ceil
 		glRectf(0.0,100.0,100.0,90.0); //floor
 		glColor3f(0.0,0.0,0.0); //score
@@ -178,12 +179,12 @@ void display(void){
 	}
 }
 void moveHeliU(void){
-	hm+=0.05;
+	hm+=0.1;
 	i++;
 	glutPostRedisplay();
 }
 void moveHeliD(){
-	hm-=0.05;
+	hm-=0.1;
 	i--;
 	glutPostRedisplay();
 }
@@ -226,7 +227,34 @@ void drawCircle(float cx, float cy, float r, float num_segments,float rc,float g
     glEnd();
 }
 void drawObstacle(){
-	glColor3f(1,1,1);
-	glRectf(30,30,40,40);
+	float xa=8,ya=43,xb,yb;
+	float angle;
+	double radius=5;
+	glColor3f(0.3,0.6,0.3);
+	glBegin(GL_TRIANGLE_FAN);
+		glVertex2f(xa,ya);
+		for (angle=1.0f;angle<361.0f;angle+=0.2)
+		{
+			xb = xa+sin(angle)*radius;
+			yb = ya+cos(angle)*radius;
+			glVertex2f(xb,yb);
+		}
+	glEnd();
+	glColor3f(0.7,0.7,0.4);
+	glBegin(GL_TRIANGLES);
+	glVertex2f(6,48);
+	glVertex2f(8,50);
+	glVertex2f(10,48);//end up
+	glVertex2f(13,45);
+	glVertex2f(13,41);
+	glVertex2f(15,43);//end right
+	glVertex2f(6,38);
+	glVertex2f(10,38);
+	glVertex2f(8,36);//end down
+	glVertex2f(3,45);
+	glVertex2f(3,41);
+	glVertex2f(1,43);//end left
+	
+	glEnd();
 
 }
