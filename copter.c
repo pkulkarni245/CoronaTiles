@@ -23,16 +23,13 @@ glOrtho(0.0, 100.0, 0.0, 100.0, -1.0 , .0);
 }
 void drawcopter()
 {
-/*
+
 glColor3f(0.7,1.0,1.0);
 glRectf(10,49.8,19.8,44.8);//body
 glRectf(2,46,10,48);//tail
 glRectf(2,46,4,51);//tail up
 glRectf(14,49.8,15.8,52.2);//propeller stand
 glRectf(7,53.6,22.8,52.2);//propeller
-//*/
-glColor3f(0.5,1,1);
-glRectf(10,49.8,19.8,44.8);
 
 }
 void renderBitmapString(float x,float y,float z,void *font,char*string)
