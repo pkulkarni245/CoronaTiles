@@ -152,11 +152,11 @@ void display(void){
 		sprintf(slevel,"%d",level); //level
 		renderBitmapString(80,3,0,GLUT_BITMAP_TIMES_ROMAN_24,"Wave:");
 		renderBitmapString(93,3,0,GLUT_BITMAP_TIMES_ROMAN_24,slevel);
-		scf+=0.025; //so less as program run very fast
+		scf+=0.05; //so less as program run very fast
 		sci=(int)scf;
 		sprintf(scs,"%d",sci);
 		//from int to char convertion to display score
-		renderBitmapString(20,3,0,GLUT_BITMAP_TIMES_ROMAN_24,scs);
+		renderBitmapString(30,3,0,GLUT_BITMAP_TIMES_ROMAN_24,scs);
 		glTranslatef(0.0,hm,0.0);
 		// hm(=dy) changes occur by mouse func
 		drawcopter();
@@ -213,19 +213,6 @@ int main(int argc, char** argv){
 	glutMainLoop();
 	return 0;
 }
-void drawCircle(float cx, float cy, float r, float num_segments,float rc,float gc,float bc){
-    glColor3f(rc,gc,bc);
-    glBegin(GL_POLYGON);
-    float ii;
-    for(ii = 0; ii < num_segments; ii+=1.0){
-		float theta;
-		theta = 2.0*3.1415926*ii/num_segments;//get the current angle
-		float x = r * cos(theta);//calculate the x component
-		float y = r * sin(theta);//calculate the y component
-		glVertex2f(x + cx, y + cy);//output vertex
-    }
-    glEnd();
-}
 void drawObstacle(){
 	float xa=8,ya=43,xb,yb;
 	float angle;
@@ -240,7 +227,7 @@ void drawObstacle(){
 			glVertex2f(xb,yb);
 		}
 	glEnd();
-	glColor3f(0.7,0.7,0.4);
+	glColor3f(1,0.6,0.2);
 	glBegin(GL_TRIANGLES);
 	glVertex2f(6,48);
 	glVertex2f(8,50);
