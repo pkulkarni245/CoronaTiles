@@ -93,10 +93,13 @@ void renderBitmapString(float x,float y,float z,void *font,char*string){
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT);
 	//GameOver Checking
+	/*
 	if((i==730||i==-700)//top and bottom checking
-	||(((int)b1x==10||(int)b1x==7||(int)b1x==4||(int)b1x==1) &&(int)b1y<53+(int)hm&&(int)b1y+35>53+(int)hm)// propeller front checking
-	||((int)b1x==9||(int)b1x==3||(int)b1x==6) &&(int)b1y<45+(int)hm&&(int)b1y+35>45+(int)hm)//lower body checking
-	||(((int)b1x==0) && (int)b1y<46+(int)hm&&(int)b1y+35>46+(int)hm)){//lower tail checking
+	||(((int)b1x==10||(int)b1x==7||(int)b1x==4||(int)b1x==1) &&((int)b1y<53+(int)hm)&&((int)b1y+35>53+(int)hm))// propeller front checking
+	||(((int)b1x==9||(int)b1x==3||(int)b1x==6) &&((int)b1y<45+(int)hm)&&((int)b1y+35>45+(int)hm))//lower body checking
+	||(((int)b1x==0) && (int)b1y<46+(int)hm&&((int)b1y+35>46+(int)hm))){//lower tail checking
+	//*/
+	if(scf==20){
 		glColor3f(0.0,0.0,1.0);
 		glRectf(0.0,0.0,100.0,100.0);
 		glColor3f(1.0,0.0,0.0);
@@ -167,11 +170,7 @@ void display(void){
 		//within the projection volume dec its x value by block_speed
 		glTranslatef(b1x,-hm,0.0);
 		glColor3f(1.0,0.0,0.0);
-		//CUSTOM OBSTACLE CREATION
-		glColor3f(1,0.4,0);
-		drawCircle(3.0,31.0,5.0,100.0,0,0.4,0.4);
-		//glRectf(0,26,6,36);
-		//CUSTOM OBSTACLE CREATION END
+		drawObstacle();
 		//glRectf(b1x,b1y,b1x+5,b1y+35);//block 1
 		glPopMatrix();
 		glutSwapBuffers();
@@ -203,8 +202,8 @@ int main(int argc, char** argv){
 	scanf("%s",name);
 	glutInit(&argc, argv);
 	glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
-	glutInitWindowSize (800, 600);
-	glutInitWindowPosition (200,200);
+	glutInitWindowSize (500, 500);
+	glutInitWindowPosition (0,0);
 	glutCreateWindow ("Corona Tiles");
 	init();
 	glutDisplayFunc(display);
@@ -225,4 +224,9 @@ void drawCircle(float cx, float cy, float r, float num_segments,float rc,float g
 		glVertex2f(x + cx, y + cy);//output vertex
     }
     glEnd();
+}
+void drawObstacle(){
+	glColor3f(1,1,1);
+	glRectf(30,30,40,40);
+
 }
