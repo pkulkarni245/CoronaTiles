@@ -6,11 +6,11 @@
 //#include<conio.h>
 //#include<windows.h>
 
-float bspd=0.1; // block dx value
+float bspd=0.2; // block dx value
 char name[25];
 float b1x=50.0,b1y=0;//block 1 init position
 float hm=0.0;//copter moving dy value
-int i=0,sci=1;float scf=1; // for increment score score_int score_flag
+int myTempVar=0,sci=1;float scf=1; // for increment score score_int score_flag
 char scs[20],slevel[20];
 //to store score_string using itoa() and level as well
 int level=1,lflag=1,windowNumber=1; //level_flag & welcome_flag init w/ 1
@@ -37,22 +37,19 @@ void renderBitmapString(float x,float y,float z,void *font,char*string){//functi
 
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT);
-	//GameOver Checking  !!!!!!!!!!!!!!!!!!!!!!!!!!!!! once game over, set windowNumber=3
-	if(scf>=20){///////INTERSECTION CONDITION HERE, REPLACE SCF>=20 WITH INTERSECTION CONDITION//
+	//GameOver Checking  !!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
+	if(scf==0){///////INTERSECTION CONDITION HERE, REPLACE SCF>=20 WITH INTERSECTION CONDITION//
+		windowNumber=3;
 		glColor3f(0.0,0.0,1.0);
 		glRectf(0.0,0.0,100.0,100.0);
 		glColor3f(1.0,0.0,0.0);
 		renderBitmapString(40,70,0,GLUT_BITMAP_HELVETICA_18,"GAME OVER!!!");
 		glColor3f(1.0,1.0,1.0);
-		renderBitmapString(25,58,0,GLUT_BITMAP_TIMES_ROMAN_24,"You");
-		renderBitmapString(45,58,0,GLUT_BITMAP_TIMES_ROMAN_24,"scored:");
-		renderBitmapString(70,58,0,GLUT_BITMAP_TIMES_ROMAN_24,scs);
+		renderBitmapString(25,58,0,GLUT_BITMAP_TIMES_ROMAN_24,"You survived for ");
+		renderBitmapString(59,58,0,GLUT_BITMAP_TIMES_ROMAN_24,scs);
+		renderBitmapString(65,58,0,GLUT_BITMAP_TIMES_ROMAN_24," days.");
 		glutSwapBuffers();
 		glFlush();
-		printf("\nGAME OVER\n\n");
-		printf("%sYou scored %s" ,name,scs);
-		printf("\n\nClose the console window to exit...\n");
-		//exit(0);
 	}else if(windowNumber==1){//Welcome Screen
 		windowNumber=2;
 		glColor3f(0.3,0.6,0.3);
@@ -109,12 +106,15 @@ void display(void){
 		//within the projection volume dec its x value by block_speed
 		glTranslatef(b1x,-hm,0.0);
 		glColor3f(1.0,0.0,0.0);
-		drawObstacle(0);
+		if(scf>=125)
+			drawObstacle(1);
+		else
+			drawObstacle(0);
 		glPopMatrix();
 		glutSwapBuffers();
 		glFlush();
 	}else if(windowNumber==3){//windowNumber=3
-		printf("sceneFLAG_########!");
+
 	}
 }
 
@@ -125,13 +125,13 @@ void display(void){
 
 
 void moveHeliU(void){
-	hm+=0.1;
-	i++;
+	hm+=0.2;
+	myTempVar++;
 	glutPostRedisplay();
 }
 void moveHeliD(){
-	hm-=0.1;
-	i--;
+	hm-=0.2;
+	myTempVar--;
 	glutPostRedisplay();
 }
 void mouse(int button, int state, int x, int y){
@@ -150,7 +150,7 @@ int main(int argc, char** argv){
 	glutInit(&argc, argv);
 	glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize (500, 500);
-	glutInitWindowPosition (0,0);
+	glutInitWindowPosition (200,200);
 	glutCreateWindow ("Corona Tiles");
 	init();
 	glutDisplayFunc(display);
@@ -210,6 +210,8 @@ void drawPerson(){
 }
 void drawObstacle(int annihilate){
 	float xa=8,ya=b1y,xb,yb;
+	if(windowNumber==3)
+		annihilate=1;
 	if(annihilate==1){
 		ya=(rand()%61)+20;
 	}
@@ -217,7 +219,7 @@ void drawObstacle(int annihilate){
 	float angle;
 	double radius=5;
 	glColor3f(0.3,0.6,0.3);
-	glBegin(GL_TRIANGLE_FAN);
+	glBegin(GL_POLYGON);
 		glVertex2f(xa,ya);
 		for (angle=1.0f;angle<361.0f;angle+=0.2)
 		{
