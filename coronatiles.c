@@ -16,9 +16,10 @@ char scs[20],slevel[20];
 int level=1,lflag=1,windowNumber=1; //level_flag & welcome_flag init w/ 1
 //Coordinates to be used to determine intersection
 float perx,pery,perw,perh,covx,covy,covw,covh;//person center x,y,width,height;virus center x,y,width,height
+int intersectionFlag=0;
 
 
-
+void updateIntersectionFlag();
 void init(void){
 	srand(time(0));
 	b1y=(rand()%61)+20;//b/w 20 and 80
@@ -40,7 +41,7 @@ void renderBitmapString(float x,float y,float z,void *font,char*string){
 void display(void){
 	glClear(GL_COLOR_BUFFER_BIT);
 	//GameOver Checking  !!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
-	if(scf==0){///////INTERSECTION CONDITION HERE, REPLACE SCF>=20 WITH INTERSECTION CONDITION//
+	if(intersectionFlag==1){///////INTERSECTION CONDITION HERE, REPLACE SCF>=20 WITH INTERSECTION CONDITION//
 		windowNumber=3;
 		glColor3f(0.0,0.0,1.0);
 		glRectf(0.0,0.0,100.0,100.0);
@@ -99,16 +100,20 @@ void display(void){
 		drawPerson();
 		//code for helicopter//if wall move towards left & get out of projection volume
 		if(b1x<-50){
-			b1x=50; //total width is 50
+			covx=b1x=50; //total width is 50
 			b1y=(rand()%61)+20;
+			updateIntersectionFlag();
 			//10 for selling+10 for giving enough space
 			// block bottom limit 0+20 & top limit 24+20=44
 		}
-		else	b1x-=bspd;
+		else{
+			covx=b1x-=bspd;
+			updateIntersectionFlag();
+		}
 		//within the projection volume dec its x value by block_speed
 		glTranslatef(b1x,-hm,0.0);
 		glColor3f(1.0,0.0,0.0);
-		if(scf>=20)
+		if(scf>=12)
 			drawObstacle(1);
 		else
 			drawObstacle(0);
@@ -145,6 +150,7 @@ void mouse(int button, int state, int x, int y){
 void keys(unsigned char key,int x,int y){
 	if(key=='w')	glutIdleFunc(moveHeliU);
 	if(key=='m')	glutIdleFunc(moveHeliD);
+	if(key=='s')	intersectionFlag=1;
 }
 int main(int argc, char** argv){
 	printf("Enter your name to play: ");
@@ -161,6 +167,11 @@ int main(int argc, char** argv){
 	glutMainLoop();
 	return 0;
 }
+
+void updateIntersectionFlag(){
+
+}
+
 void drawPerson(){
 	float xa=8,ya=43,xb,yb;
 	float angle;
