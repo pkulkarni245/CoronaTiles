@@ -14,6 +14,8 @@ int myTempVar=0,sci=1;float scf=1; // for increment score score_int score_flag
 char scs[20],slevel[20];
 //to store score_string using itoa() and level as well
 int level=1,lflag=1,windowNumber=1; //level_flag & welcome_flag init w/ 1
+//Coordinates to be used to determine intersection
+float perx,pery,perw,perh,covx,covy,covw,covh;//person center x,y,width,height;virus center x,y,width,height
 
 
 
@@ -26,7 +28,7 @@ void init(void){
 	glOrtho(0.0, 100.0, 0.0, 100.0, -1.0 , .0);
 }
 
-void renderBitmapString(float x,float y,float z,void *font,char*string){//function required to be declared here
+void renderBitmapString(float x,float y,float z,void *font,char*string){
 	char *c;
 	glRasterPos3f(x, y,z);
 	for(c=string; *c != '\0'; c++)
@@ -96,7 +98,7 @@ void display(void){
 		// hm(=dy) changes occur by mouse func
 		drawPerson();
 		//code for helicopter//if wall move towards left & get out of projection volume
-		if(b1x<-10){
+		if(b1x<-50){
 			b1x=50; //total width is 50
 			b1y=(rand()%61)+20;
 			//10 for selling+10 for giving enough space
@@ -106,7 +108,7 @@ void display(void){
 		//within the projection volume dec its x value by block_speed
 		glTranslatef(b1x,-hm,0.0);
 		glColor3f(1.0,0.0,0.0);
-		if(scf>=125)
+		if(scf>=20)
 			drawObstacle(1);
 		else
 			drawObstacle(0);
@@ -209,7 +211,7 @@ void drawPerson(){
 	glFlush();
 }
 void drawObstacle(int annihilate){
-	float xa=8,ya=b1y,xb,yb;
+	float xa=40,ya=b1y,xb,yb;
 	if(windowNumber==3)
 		annihilate=1;
 	if(annihilate==1){
@@ -230,19 +232,18 @@ void drawObstacle(int annihilate){
 	glEnd();
 	glColor3f(1,0.6,0.2);
 	glBegin(GL_TRIANGLES);
-	glVertex2f(6,(ya+5));
-	glVertex2f(8,(ya+7));
-	glVertex2f(10,(ya+5));//end up
-	glVertex2f(13,(ya+2));
-	glVertex2f(13,(ya-2));
-	glVertex2f(15,ya);//end right
-	glVertex2f(6,(ya-5));
-	glVertex2f(10,(ya-5));
-	glVertex2f(8,(ya-7));//end down
-	glVertex2f(3,(ya+2));
-	glVertex2f(3,(ya-2));
-	glVertex2f(1,ya);//end left
-	
+	glVertex2f(xa-2,(ya+5));
+	glVertex2f(xa,(ya+7));
+	glVertex2f(xa+2,(ya+5));//end up
+	glVertex2f(xa+5,(ya+2));
+	glVertex2f(xa+5,(ya-2));
+	glVertex2f(xa+7,ya);//end right
+	glVertex2f(xa-2,(ya-5));
+	glVertex2f(xa+2,(ya-5));
+	glVertex2f(xa,(ya-7));//end down
+	glVertex2f(xa-5,(ya+2));
+	glVertex2f(xa-5,(ya-2));
+	glVertex2f(xa-7,ya);//end left
 	glEnd();
 
 }
