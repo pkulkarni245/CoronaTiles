@@ -70,7 +70,7 @@ void drawObstacle(int annihilate){
 	drawRotatedSquare(xa,ya,13);
 	float angle;
 	double radius=5;
-	glColor3f(0.3,0.6,0.3);
+	glColor3f(0.3,0.5,0.3);
 	glBegin(GL_POLYGON);
 		glVertex2f(xa,ya);
 		for (angle=1.0f;angle<361.0f;angle+=0.2)
@@ -181,14 +181,14 @@ void display(void)
 	//GameOver Checking
 	if(
 	//(i==730||i==-700)
-	(i==1000||i==-700)
+	(i==300||i==-50)
 	//top and bottom wall check
 	||
 	( ((int)b1x==8) && (int)b1y<30+(int)hm&&(int)b1y+16>30+(int)hm)
 		//body checking
 	||
-	( ((int)b1x==5)
-	&&(int)b1y<39.9+(int)hm&&(int)b1y+14>39.9+(int)hm)
+	( ((int)b1x==4)
+	&&(int)b1y<43+(int)hm&&(int)b1y+14>43+(int)hm)
 		 // Head checking
 	||
 	( ((int)b1x==7||(int)b1x==1)
