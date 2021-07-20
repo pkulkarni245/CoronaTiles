@@ -98,22 +98,21 @@ void display(void){
 		glTranslatef(0.0,hm,0.0);
 		// hm(=dy) changes occur by mouse func
 		drawPerson();
+		updateIntersectionFlag();
 		//code for helicopter//if wall move towards left & get out of projection volume
-		if(b1x<-50){
+		if(b1x<=-50){
 			covx=b1x=50; //total width is 50
 			b1y=(rand()%61)+20;
-			updateIntersectionFlag();
 			//10 for selling+10 for giving enough space
 			// block bottom limit 0+20 & top limit 24+20=44
 		}
 		else{
 			covx=b1x-=bspd;
-			updateIntersectionFlag();
 		}
 		//within the projection volume dec its x value by block_speed
 		glTranslatef(b1x,-hm,0.0);
 		glColor3f(1.0,0.0,0.0);
-		if(scf>=12)
+		if(scf>=30)
 			drawObstacle(1);
 		else
 			drawObstacle(0);
@@ -222,7 +221,7 @@ void drawPerson(){
 	glFlush();
 }
 void drawObstacle(int annihilate){
-	float xa=40,ya=b1y,xb,yb;
+	float xa=b1x,ya=b1y,xb,yb;
 	if(windowNumber==3)
 		annihilate=1;
 	if(annihilate==1){
@@ -255,6 +254,12 @@ void drawObstacle(int annihilate){
 	glVertex2f(xa-5,(ya+2));
 	glVertex2f(xa-5,(ya-2));
 	glVertex2f(xa-7,ya);//end left
+	glEnd();
+	glBegin(GL_LINES);
+	glVertex2f(b1x,0);
+	glVertex2f(b1x,100);
+	glVertex2f(0,b1y);
+	glVertex2f(100,b1y);
 	glEnd();
 
 }
