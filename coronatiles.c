@@ -341,13 +341,11 @@ void keys(unsigned char key,int x,int y)
 
 int main(int argc, char** argv)
 {
-	printf("enter your name to play: ");
-	scanf("%s",name);
 	glutInit(&argc, argv);
 	glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize (800, 600);
 	glutInitWindowPosition (200,200);
-	glutCreateWindow ("2D Copter Game");
+	glutCreateWindow ("Corona Tiles");
 	init();
 	glutDisplayFunc(display);
 	glutMouseFunc(mouse);
