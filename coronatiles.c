@@ -47,7 +47,7 @@ void drawObstacle(int annihilate){
 	if(level>=3)
 		annihilate=1;
 	if(annihilate==1)
-		ya=(rand()%81)+10;
+		ya=(rand()%81)+5;
 		//*/
 	drawSquare(xa,ya,8.8);
 	drawRotatedSquare(xa,ya,13);
@@ -171,7 +171,7 @@ void display(void){
 	glClear(GL_COLOR_BUFFER_BIT);
 	//GameOver Checking
 	if(
-	(i==300||i==-50)
+	(i==330||i==-80)
 	//top and bottom wall check
 	||
 	( ((int)b1x==8) && (int)b1y<30+(int)hm&&(int)b1y+16>30+(int)hm)
