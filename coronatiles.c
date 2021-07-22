@@ -212,6 +212,14 @@ void drawProtocolPerson(){
 	//glRectf(5,44,3,50);//tail up
 	//glRectf(14,49.8,15.8,52.2);//propeller stand
 	//glRectf(7,53.6,22.8,52.2);//propeller*/
+
+	glColor3f(1,1,1);
+	glBegin(GL_LINE_LOOP);
+	glVertex2f(6,45.3);
+	glVertex2f(10,45.3);
+	glVertex2f(12,41);
+	glVertex2f(4,41);
+	glEnd();
 	glFlush();
 }
 
@@ -254,8 +262,8 @@ void display(void)
 		glColor3f(1.0,0.0,0.0);
 		renderBitmapString(43,70,0,GLUT_BITMAP_HELVETICA_18,"GAME OVER");
 		glColor3f(227/255.0,229/255.0,47/255.0);
-		glRectf(0.0,0.0,100.0,10.0);//ceil
-		glRectf(0.0,100.0,100.0,90.0);//floor
+		glRectf(0.0,0.0,100.0,10.0);//floor
+		glRectf(0.0,100.0,100.0,90.0);//ceil
 		renderBitmapString(37,58,0,GLUT_BITMAP_TIMES_ROMAN_24,"Days Survived:");
 		renderBitmapString(60,58,0,GLUT_BITMAP_TIMES_ROMAN_24,scs);
 		glColor3f(0.0,0.0,0.0);
@@ -268,8 +276,8 @@ void display(void)
 	{
 		wflag=0;
 		glColor3f(227/255.0,229/255.0,47/255.0);
-		glRectf(0.0,0.0,100.0,10.0);//ceil
-		glRectf(0.0,100.0,100.0,90.0);//floor
+		glRectf(0.0,0.0,100.0,10.0);//floor
+		glRectf(0.0,100.0,100.0,90.0);//ceil
 		renderBitmapString(40,70,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
 		renderBitmapString(36,11,0,GLUT_BITMAP_HELVETICA_12,"Pavan Kulkarni    -    Pulkit Vaish");
 		glColor3f(0.0,0.0,0.0);
@@ -281,10 +289,11 @@ void display(void)
 		glColor3f(0,0,0);
 		glRectf(0,0,100,100);
 		glColor3f(227/255.0,229/255.0,47/255.0);
-		glRectf(0.0,0.0,100.0,10.0);//ceil
-		glRectf(0.0,100.0,100.0,90.0);//floor
+		glRectf(0.0,0.0,100.0,10.0);//floor
+		glRectf(0.0,100.0,100.0,90.0);//ceil
 		glColor3f(0.0,0.0,0.0);
 		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
+		renderBitmapString(32,5,0,GLUT_BITMAP_HELVETICA_18,"Pavan Kulkarni    -    Pulkit Vaish");
 		drawProtocolPerson();
 		glutSwapBuffers();
 		glFlush();
@@ -305,20 +314,20 @@ void display(void)
 		}
 		glPushMatrix();
 		glColor3f(227/255.0,229/255.0,47/255.0);
-		glRectf(0.0,0.0,100.0,10.0);    //ceil
-		glRectf(0.0,100.0,100.0,90.0); //floor
+		glRectf(0.0,0.0,100.0,5.0);    //floor
+		glRectf(0.0,100.0,100.0,95.0); //ceil
 		glColor3f(0.0,0.0,0.0);
-		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
-		renderBitmapString(1,3,0,GLUT_BITMAP_TIMES_ROMAN_24,"Days Survived:");
+		renderBitmapString(40,96,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
+		renderBitmapString(1,1,0,GLUT_BITMAP_TIMES_ROMAN_24,"Days Survived:");
 		//glColor3f(0.7,0.7,0.7);
 		sprintf(slevel,"%d",level); //level
-		renderBitmapString(80,3,0,GLUT_BITMAP_TIMES_ROMAN_24,"Wave:");
-		renderBitmapString(90,3,0,GLUT_BITMAP_TIMES_ROMAN_24,slevel);
+		renderBitmapString(80,1,0,GLUT_BITMAP_TIMES_ROMAN_24,"Wave:");
+		renderBitmapString(90,1,0,GLUT_BITMAP_TIMES_ROMAN_24,slevel);
 		scf+=0.025;         //so less as program run very fast
 		sci=(int)scf;
 		sprintf(scs,"%d",sci);
 		//from int to char convertion to display score
-		renderBitmapString(20,3,0,GLUT_BITMAP_TIMES_ROMAN_24,scs);
+		renderBitmapString(20,1,0,GLUT_BITMAP_TIMES_ROMAN_24,scs);
 		glTranslatef(0.0,hm,0.0);
 		// hm(=dy) changes occur by mouse func
 		drawPerson();
