@@ -47,11 +47,11 @@ void drawRotatedSquare(double x1, double y1, double sidelength){
 
 void drawObstacle(int annihilate){
 	float xa=b1x+2.5,ya=b1y+17.5,xb,yb;
-	/*
-	if(windowNumber==3)
+	//*
+	if(level>=1)
 		annihilate=1;
 	if(annihilate==1)
-		ya=(rand()%61)+20;
+		ya=(rand()%81)+10;
 		//*/
 	drawSquare(xa,ya,8.8);
 	drawRotatedSquare(xa,ya,13);
@@ -95,7 +95,7 @@ void drawObstacle(int annihilate){
 void init(void)
 {
 	srand(time(0));
-	b1y=(rand()%45)+10;//b/w 10 to 44
+	b1y=(rand()%61)+20;//b/w 10 to 44
 	glClearColor (0.0, 0.0, 0.0, 0.0);
 	glShadeModel (GL_SMOOTH);
 	glLoadIdentity ();
