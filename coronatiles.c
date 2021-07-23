@@ -6,15 +6,24 @@
 //#include<conio.h>
 //#include<windows.h>
 
-float bspd=0.1; // block dx value
+float bspd=0.1; //obstacle dx value
 char name[25];
-float b1x=50.0,b1y=0;//block 1 init position
-float hm=0.0;//copter moving dy value
+float b1x=50.0,b1y=0;//obstacle 1 init position
+float hm=0.0;//obstacle movement dy value
 int i=0,sci=1;float scf=1; // for increment score score_int score_flag
 char scs[20],slevel[20];
 int level=1,lflag=1,wflag=1; //level_flag & welcome_flag init w/ 1
 float angle;
 double radius=3;
+int menu;
+
+
+
+void menuFunction(int n){
+	switch(n){
+		case 0: exit(0); break;
+	}
+}
 
 void drawSquare(double x1, double y1, double sidelength){
     double halfside = sidelength / 2;
@@ -86,9 +95,7 @@ void drawPerson(){
 		glVertex2f(xb,yb);
 	}
 	glEnd();
-	//glColor3f(0.5,0.7,0.7);
-	glBegin(GL_QUADS);
-	//glColor3f(0.5,0.7,0.7);	  
+	glBegin(GL_QUADS); 
 	glColor3f(  0.0f,  0.0f, 0.0f);	
 	glVertex2f(4,28.9);
 	glColor3f(  0.0f,  0.0f, 0.0f);
@@ -98,8 +105,6 @@ void drawPerson(){
 	glColor3f(0.5,0.7,0.7);
 	  glVertex2f(4,39.9 );
 	glEnd();
-	//glColor3f(0.5,0.7,0.7);
-	//glRectf(4,28.9,12,39.9);//body
 	glBegin(GL_QUADS);	  
 	glColor3f(  0.0f,  0.0f, 0.0f);	
 	  glVertex2f(2,32);
@@ -110,8 +115,6 @@ void drawPerson(){
 	glColor3f(0.7,0.8,1.0);
 	  glVertex2f(2,39.9 );
 	glEnd();
-	//glColor3f(0.7,0.8,1.0);
-	//glRectf(2,32,3.9,39.9);//left arm
 	glBegin(GL_QUADS);	  
 	glColor3f(  0.0f,  0.0f, 0.0f);	
 	  glVertex2f(12.1,32);
@@ -122,7 +125,6 @@ void drawPerson(){
 	glColor3f(0.7,0.8,1.0);
 	  glVertex2f(12.1,39.9 );
 	glEnd();
-	//glRectf(12.2,32,14.1,39.9);//right arm
 	glColor3f(1.0,1.0,0.6);
 	glBegin(GL_TRIANGLE_FAN);
 	glVertex2f(3,31);
@@ -152,8 +154,6 @@ void drawPerson(){
 	glColor3f(0.2,0.2,0.6);
 	  glVertex2f(4.5,28.5);
 	glEnd();
-	//glColor3f(0.2,0.2,0.6);
-	//glRectf(4.5,18,7.5,28.5);//left leg
 	glBegin(GL_QUADS);	  
 	glColor3f(  0.0f,  0.0f, 0.0f);	
 	  glVertex2f(8.5,18);
@@ -164,7 +164,6 @@ void drawPerson(){
 	glColor3f(0.2,0.2,0.6);
 	  glVertex2f(8.5,28.5);
 	glEnd();
-	//glRectf(8.5,18,11.5,28.5);//right leg
 	glColor3f(0.7,0.0,0.7);
 	glRectf(5,16.8,7,17.9);//right foot
 	glRectf(9,16.8,11,17.9);//right foot
@@ -324,7 +323,7 @@ void display(void){
 		//within the projection volume dec its x value by block_speed
 		glTranslatef(b1x,-hm,0.0);
 		/*
-		//Crosshairs through virus
+		//Crosshairs through virus for testing purposes
 		glBegin(GL_LINES);
 		glVertex2f(b1x+2,0);
 		glVertex2f(b1x+2,100);
@@ -387,6 +386,11 @@ int main(int argc, char** argv){
 	glutDisplayFunc(display);
 	glutMouseFunc(mouse);
 	glutKeyboardFunc(keys);
+	menu=glutCreateMenu(menuFunction);
+	glutCreateMenu(menuFunction);
+	glutAddMenuEntry("-----MENU-----",-1);
+	glutAddMenuEntry("Exit",0);
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
 	glutMainLoop();
 	return 0;
  }
