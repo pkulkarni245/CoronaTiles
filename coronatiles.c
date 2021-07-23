@@ -2,6 +2,7 @@
 #include<GL/glut.h>
 #include<time.h>
 #include<stdio.h>
+#include<unistd.h>
 //#include<dos.h>
 //#include<conio.h>
 //#include<windows.h>
@@ -236,10 +237,77 @@ void display(void){
 	&&(int)b1y<18+(int)hm&&(int)b1y+14>18+(int)hm))
 	//legs checking
 	{//endgame screen: score display
+
+		glColor3f(1,0,0);
+		glRectf(0,0,100,100);
+		glColor3f(227/255.0,229/255.0,47/255.0);
+		glRectf(0.0,0.0,100.0,10.0);//floor
+		glRectf(0.0,100.0,100.0,90.0);//ceil
+		glColor3f(0,0,0);
+		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
+		glutSwapBuffers();
+		glColor3f(227/255.0,229/255.0,47/255.0);
+		glRectf(0.0,0.0,100.0,10.0);//floor
+		glRectf(0.0,100.0,100.0,90.0);//ceil
+		glColor3f(0,0,0);
+		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
+		glFlush();
+		sleep(1);
+		glColor3f(0,0,0);
+		glRectf(0,0,100,100);
+		glColor3f(227/255.0,229/255.0,47/255.0);
+		glRectf(0.0,0.0,100.0,10.0);//floor
+		glRectf(0.0,100.0,100.0,90.0);//ceil
+		glColor3f(0,0,0);
+		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
+		glutSwapBuffers();
+		glFlush();
+		sleep(1);
+		glColor3f(1,0,0);
+		glRectf(0,0,100,100);
+		glColor3f(227/255.0,229/255.0,47/255.0);
+		glRectf(0.0,0.0,100.0,10.0);//floor
+		glRectf(0.0,100.0,100.0,90.0);//ceil
+		glColor3f(0,0,0);
+		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
+		glutSwapBuffers();
+		glFlush();
+		sleep(1);
+		glColor3f(0,0,0);
+		glRectf(0,0,100,100);
+		glColor3f(227/255.0,229/255.0,47/255.0);
+		glRectf(0.0,0.0,100.0,10.0);//floor
+		glRectf(0.0,100.0,100.0,90.0);//ceil
+		glColor3f(0,0,0);
+		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
+		glutSwapBuffers();
+		glFlush();
+		sleep(1);
+		glColor3f(1,0,0);
+		glRectf(0,0,100,100);
+		glColor3f(227/255.0,229/255.0,47/255.0);
+		glRectf(0.0,0.0,100.0,10.0);//floor
+		glRectf(0.0,100.0,100.0,90.0);//ceil
+		glColor3f(0,0,0);
+		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
+		glutSwapBuffers();
+		glFlush();
+		sleep(1);
+		glColor3f(0,0,0);
+		glRectf(0,0,100,100);
+		glColor3f(227/255.0,229/255.0,47/255.0);
+		glRectf(0.0,0.0,100.0,10.0);//floor
+		glRectf(0.0,100.0,100.0,90.0);//ceil
+		glColor3f(0,0,0);
+		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
+		glutSwapBuffers();
+		glFlush();
+		sleep(1);
 		wflag=-1;
 		glColor3f(0.0,0.0,0.0);
 		glRectf(0.0,0.0,100.0,100.0);
 		glColor3f(1.0,0.0,0.0);
+		glColor3f(0,0,0);
 		renderBitmapString(43,70,0,GLUT_BITMAP_HELVETICA_18,"GAME OVER");
 		glColor3f(227/255.0,229/255.0,47/255.0);
 		glRectf(0.0,0.0,100.0,10.0);//floor
@@ -264,7 +332,7 @@ void display(void){
 		glutSwapBuffers();
 		glFlush();
 	}
-	else if(wflag==2){
+	else if(wflag==2){//message screen
 		glColor3f(0,0,0);
 		glRectf(0,0,100,100);
 		glColor3f(227/255.0,229/255.0,47/255.0);
