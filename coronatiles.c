@@ -86,11 +86,43 @@ void drawPerson(){
 		glVertex2f(xb,yb);
 	}
 	glEnd();
+	//glColor3f(0.5,0.7,0.7);
+	glBegin(GL_QUADS);
+	//glColor3f(0.5,0.7,0.7);	  
+	glColor3f(  0.0f,  0.0f, 0.0f);	
+	glVertex2f(4,28.9);
+	glColor3f(  0.0f,  0.0f, 0.0f);
+	glVertex2f(12,28.9);
 	glColor3f(0.5,0.7,0.7);
-	glRectf(4,28.9,12,39.9);//body
+	  glVertex2f(12, 39.9);
+	glColor3f(0.5,0.7,0.7);
+	  glVertex2f(4,39.9 );
+	glEnd();
+	//glColor3f(0.5,0.7,0.7);
+	//glRectf(4,28.9,12,39.9);//body
+	glBegin(GL_QUADS);	  
+	glColor3f(  0.0f,  0.0f, 0.0f);	
+	  glVertex2f(2,32);
+	glColor3f(  0.0f,  0.0f, 0.0f);
+	  glVertex2f(3.9,32);
 	glColor3f(0.7,0.8,1.0);
-	glRectf(2,32,3.9,39.9);//left hand
-	glRectf(12.2,32,14.1,39.9);//right hand
+	  glVertex2f(3.9, 39.9);
+	glColor3f(0.7,0.8,1.0);
+	  glVertex2f(2,39.9 );
+	glEnd();
+	//glColor3f(0.7,0.8,1.0);
+	//glRectf(2,32,3.9,39.9);//left arm
+	glBegin(GL_QUADS);	  
+	glColor3f(  0.0f,  0.0f, 0.0f);	
+	  glVertex2f(12.1,32);
+	glColor3f(  0.0f,  0.0f, 0.0f);
+	  glVertex2f(13.9,32);
+	glColor3f(0.7,0.8,1.0);
+	  glVertex2f(13.9, 39.9);
+	glColor3f(0.7,0.8,1.0);
+	  glVertex2f(12.1,39.9 );
+	glEnd();
+	//glRectf(12.2,32,14.1,39.9);//right arm
 	glColor3f(1.0,1.0,0.6);
 	glBegin(GL_TRIANGLE_FAN);
 	glVertex2f(3,31);
@@ -110,12 +142,32 @@ void drawPerson(){
 		glVertex2f(xb,yb);
 	}
 	glEnd();
+	glBegin(GL_QUADS);	  
+	glColor3f(  0.0f,  0.0f, 0.0f);	
+	  glVertex2f(4.5,18);
+	glColor3f(  0.0f,  0.0f, 0.0f);
+	  glVertex2f(7.5,18);
 	glColor3f(0.2,0.2,0.6);
-	glRectf(4.5,18,7.5,28.5);//left leg
-	glRectf(8.5,18,11.5,28.5);//right leg
+	  glVertex2f(7.5, 28.5);
+	glColor3f(0.2,0.2,0.6);
+	  glVertex2f(4.5,28.5);
+	glEnd();
+	//glColor3f(0.2,0.2,0.6);
+	//glRectf(4.5,18,7.5,28.5);//left leg
+	glBegin(GL_QUADS);	  
+	glColor3f(  0.0f,  0.0f, 0.0f);	
+	  glVertex2f(8.5,18);
+	glColor3f(  0.0f,  0.0f, 0.0f);
+	  glVertex2f(11.5,18);
+	glColor3f(0.2,0.2,0.6);
+	  glVertex2f(11.5, 28.5);
+	glColor3f(0.2,0.2,0.6);
+	  glVertex2f(8.5,28.5);
+	glEnd();
+	//glRectf(8.5,18,11.5,28.5);//right leg
 	glColor3f(0.7,0.0,0.7);
-	glRectf(5,16.8,7,17.9);//right leg
-	glRectf(9,16.8,11,17.9);//right leg
+	glRectf(5,16.8,7,17.9);//right foot
+	glRectf(9,16.8,11,17.9);//right foot
 	glFlush();
 }
 void drawProtocolPerson(){
@@ -134,7 +186,7 @@ void drawProtocolPerson(){
 	glColor3f(0.7,1.0,1.0);
 	glRectf(5.6,40.3,10.4,43.2);//mask
 	glColor3f(0.7,1.0,1.0);
-	glRectf(4,28.9,12,39.9);//body
+	glRectf(4,28.5,12,39.9);//body
 	glColor3f(0.7,1.0,1.0);
 	glRectf(2,32,3.9,39.9);//left arm
 	glRectf(3.4,30.8,3.8,31.9);//right glove thumb
@@ -144,8 +196,8 @@ void drawProtocolPerson(){
 	glRectf(12.1,30.8,12.6,31.9);//right glove thumb
 	glRectf(12.6,29,13.9,31.9);//right glove fingers
 	glColor3f(0.7,1.0,1.0);
-	glRectf(4.5,18,7.5,28.8);//left leg
-	glRectf(8.5,18,11.5,28.8);//right leg
+	glRectf(4.5,18,7.7,28.8);//left leg
+	glRectf(8.3,18,11.5,28.8);//right leg
 	glColor3f(0.7,0.0,0.7);
 	glRectf(5,16.8,7,17.9);//right leg
 	glRectf(9,16.8,11,17.9);//right leg
@@ -221,6 +273,13 @@ void display(void){
 		glRectf(0.0,100.0,100.0,90.0);//ceil
 		glColor3f(0.0,0.0,0.0);
 		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
+		glColor3f(1.0,1.0,0.6);
+		renderBitmapString(30,70,0,GLUT_BITMAP_HELVETICA_18,"PRECAUTIONS AND GUIDELINES");
+		renderBitmapString(32,60,0,GLUT_BITMAP_HELVETICA_18,"-Wear mask at all the times");
+		renderBitmapString(32,55,0,GLUT_BITMAP_HELVETICA_18,"-Maintain social distancing when in a crowd.");
+		renderBitmapString(32,50,0,GLUT_BITMAP_HELVETICA_18,"-Always wash your hands before consuming edibles.");
+		renderBitmapString(32,45,0,GLUT_BITMAP_HELVETICA_18,"-Cover your mouth when you cough or sneeze.");
+		glColor3f(0.0,0.0,0.0);
 		renderBitmapString(32,5,0,GLUT_BITMAP_HELVETICA_18,"Pavan Kulkarni    -    Pulkit Vaish");
 		drawProtocolPerson();
 		glutSwapBuffers();
