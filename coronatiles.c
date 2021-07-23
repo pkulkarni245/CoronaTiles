@@ -8,7 +8,6 @@
 //#include<windows.h>
 
 float bspd=0.1; //obstacle dx value
-char name[25];
 float b1x=50.0,b1y=0;//obstacle 1 init position
 float hm=0.0;//obstacle movement dy value
 int i=0,sci=1;float scf=1; // for increment score score_int score_flag
@@ -409,14 +408,14 @@ void display(void){
 }
 
 
-void moveHeliU(void){
+void movePersonUp(void){
 	hm+=0.15;
 	i++;
 	glutPostRedisplay();
 }
 
 
-void moveHeliD(){
+void movePersonDown(){
 	hm-=0.15;
 	i--;
 	glutPostRedisplay();
@@ -427,9 +426,9 @@ void mouse(int button, int state, int x, int y){
 	switch (button){
 		case GLUT_LEFT_BUTTON:
 		if (state == GLUT_DOWN)
-		glutIdleFunc(moveHeliU);
+		glutIdleFunc(movePersonUp);
 		else if (state == GLUT_UP)
-		glutIdleFunc(moveHeliD);
+		glutIdleFunc(movePersonDown);
 		break;
 		default: break;
 	}
@@ -437,8 +436,8 @@ void mouse(int button, int state, int x, int y){
 
 
 void keys(unsigned char key,int x,int y){
-	if(key=='w') glutIdleFunc(moveHeliU);
-	if(key=='m') glutIdleFunc(moveHeliD);
+	if(key=='w') glutIdleFunc(movePersonUp);
+	if(key=='m') glutIdleFunc(movePersonDown);
 	if(key=='s') if(wflag==0) wflag=-1;
 	if(key==32) if(wflag==-1) wflag=2;
 }
