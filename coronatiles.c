@@ -236,8 +236,9 @@ void display(void){
 	&&(int)b1y<18+(int)hm&&(int)b1y+14>18+(int)hm))
 	//legs checking
 	{//endgame screen: score display
+		wflag=-1;
 		int flashcheck=0;
-		for(flashcheck=0;flashcheck<5;flashcheck++){
+		for(flashcheck=0;flashcheck<3;flashcheck++){
 			if(flashcheck%2==0){
 				glColor3f(1,0,0);
 				glRectf(0,0,100,100);
@@ -254,7 +255,6 @@ void display(void){
 			glFlush();
 			sleep(1);
 		}
-		wflag=-1;
 		glColor3f(0.0,0.0,0.0);
 		glRectf(0.0,0.0,100.0,100.0);
 		glColor3f(1.0,0.0,0.0);
@@ -284,14 +284,14 @@ void display(void){
 			if(slide==0)
 				renderBitmapString(27,71,0,GLUT_BITMAP_HELVETICA_18,"A Bangalore Institute of Technology Production...");
 			else if(slide==1||slide==2){
-				renderBitmapString(27,71,0,GLUT_BITMAP_TIMES_ROMAN_24,"Under the able guidance of");
-				renderBitmapString(27,63,0,GLUT_BITMAP_HELVETICA_12,"Asst Prof");
-				renderBitmapString(27,60,0,GLUT_BITMAP_HELVETICA_12,"Dept of CS&E");
-				renderBitmapString(60,63,0,GLUT_BITMAP_HELVETICA_12,"Asst Prof");
-				renderBitmapString(60,60,0,GLUT_BITMAP_HELVETICA_12,"Dept of CS&E");
+				renderBitmapString(31,65,0,GLUT_BITMAP_TIMES_ROMAN_24,"Under the able guidance of");
+				renderBitmapString(27,43,0,GLUT_BITMAP_HELVETICA_12,"Asst Prof");
+				renderBitmapString(27,40,0,GLUT_BITMAP_HELVETICA_12,"Dept of CS&E");
+				renderBitmapString(60,43,0,GLUT_BITMAP_HELVETICA_12,"Asst Prof");
+				renderBitmapString(60,40,0,GLUT_BITMAP_HELVETICA_12,"Dept of CS&E");
 				int arrInd=(slide-1)*2;
-				renderBitmapString(27,66,0,GLUT_BITMAP_HELVETICA_18,prof[arrInd]);
-				renderBitmapString(60,66,0,GLUT_BITMAP_HELVETICA_18,prof[(arrInd+1)]);
+				renderBitmapString(27,46,0,GLUT_BITMAP_HELVETICA_18,prof[arrInd]);
+				renderBitmapString(60,46,0,GLUT_BITMAP_HELVETICA_18,prof[(arrInd+1)]);
 			}
 			if(slide==3){
 				glColor3f(0,0,0);
