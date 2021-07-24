@@ -295,7 +295,7 @@ void display(void){
 			}
 			if(slide==3){
 				renderBitmapString(31,65,0,GLUT_BITMAP_TIMES_ROMAN_24,"Under the able guidance of");
-				renderBitmapString(39,46,0,GLUT_BITMAP_HELVETICA_18,"KJ Bhanushree");
+				renderBitmapString(39,46,0,GLUT_BITMAP_HELVETICA_18,"Bhanushree KJ");
 				renderBitmapString(39,43,0,GLUT_BITMAP_HELVETICA_12,"Asst Prof");
 				renderBitmapString(39,40,0,GLUT_BITMAP_HELVETICA_12,"Dept of CS&E");
 
