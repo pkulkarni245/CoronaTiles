@@ -273,7 +273,7 @@ void display(void){
 	}
 	else if(wflag==1){//Welcome Screen
 		wflag=0;
-		char prof[4][50]={"Prof. MS Bhargavi","Prof. Shruthiba A","Prof. N Thanuja","Prof. Anjini L"};int slide=0;
+		char prof[4][20]={"Prof MS Bhargavi","Prof Shruthiba A","Prof N Thanuja","Prof Anjini L"};int slide;
 		glColor3f(227/255.0,229/255.0,47/255.0);
 		glRectf(0.0,0.0,100.0,10.0);//floor
 		glRectf(0.0,100.0,100.0,90.0);//ceil
