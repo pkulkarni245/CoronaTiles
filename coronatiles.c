@@ -400,18 +400,21 @@ void display(void){
 void movePersonUp(void){
 	hm+=0.15;
 	i++;
-	glutPostRedisplay();
+	if(wflag!=-1)
+		glutPostRedisplay();
 }
 
 
 void movePersonDown(){
 	hm-=0.15;
 	i--;
-	glutPostRedisplay();
+	if(wflag!=-1)
+		glutPostRedisplay();
 }
 
 
 void mouse(int button, int state, int x, int y){
+	
 	switch (button){
 		case GLUT_LEFT_BUTTON:
 		if (state == GLUT_DOWN)
