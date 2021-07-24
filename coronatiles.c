@@ -277,12 +277,12 @@ void display(void){
 		glColor3f(227/255.0,229/255.0,47/255.0);
 		glRectf(0.0,0.0,100.0,10.0);//floor
 		glRectf(0.0,100.0,100.0,90.0);//ceil
-		for(slide=0;slide<4;slide++){
+		for(slide=0;slide<5;slide++){
 			glColor3f(0,0,0);
 			glRectf(0,10,100,90);
 			glColor3f(227/255.0,229/255.0,47/255.0);
 			if(slide==0)
-				renderBitmapString(27,71,0,GLUT_BITMAP_HELVETICA_18,"A Bangalore Institute of Technology Production...");
+				renderBitmapString(23,60,0,GLUT_BITMAP_TIMES_ROMAN_24,"A Bangalore Institute of Technology Production...");
 			else if(slide==1||slide==2){
 				renderBitmapString(31,65,0,GLUT_BITMAP_TIMES_ROMAN_24,"Under the able guidance of");
 				renderBitmapString(27,43,0,GLUT_BITMAP_HELVETICA_12,"Asst Prof");
@@ -294,6 +294,13 @@ void display(void){
 				renderBitmapString(60,46,0,GLUT_BITMAP_HELVETICA_18,prof[(arrInd+1)]);
 			}
 			if(slide==3){
+				renderBitmapString(31,65,0,GLUT_BITMAP_TIMES_ROMAN_24,"Under the able guidance of");
+				renderBitmapString(39,46,0,GLUT_BITMAP_HELVETICA_18,"KJ Bhanushree");
+				renderBitmapString(39,43,0,GLUT_BITMAP_HELVETICA_12,"Asst Prof");
+				renderBitmapString(39,40,0,GLUT_BITMAP_HELVETICA_12,"Dept of CS&E");
+
+			}
+			if(slide==4){
 				glColor3f(0,0,0);
 				glRectf(0,0,100,100);
 			}
@@ -357,7 +364,7 @@ void display(void){
 		scf+=0.025;//increase speed at each wave
 		sci=(int)scf;
 		sprintf(scs,"%d",sci);
-		//from int to char convertion to display score
+		//from int to char conversion to display score
 		renderBitmapString(20,1,0,GLUT_BITMAP_TIMES_ROMAN_24,scs);
 		glTranslatef(0.0,hm,0.0);
 		drawPerson();
