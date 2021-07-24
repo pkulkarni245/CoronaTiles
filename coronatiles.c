@@ -236,77 +236,29 @@ void display(void){
 	&&(int)b1y<18+(int)hm&&(int)b1y+14>18+(int)hm))
 	//legs checking
 	{//endgame screen: score display
-
-		glColor3f(1,0,0);
-		glRectf(0,0,100,100);
-		glColor3f(227/255.0,229/255.0,47/255.0);
-		glRectf(0.0,0.0,100.0,10.0);//floor
-		glRectf(0.0,100.0,100.0,90.0);//ceil
-		glColor3f(0,0,0);
-		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
-		glutSwapBuffers();
-		glColor3f(227/255.0,229/255.0,47/255.0);
-		glRectf(0.0,0.0,100.0,10.0);//floor
-		glRectf(0.0,100.0,100.0,90.0);//ceil
-		glColor3f(0,0,0);
-		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
-		glFlush();
-		sleep(1);
-		glColor3f(0,0,0);
-		glRectf(0,0,100,100);
-		glColor3f(227/255.0,229/255.0,47/255.0);
-		glRectf(0.0,0.0,100.0,10.0);//floor
-		glRectf(0.0,100.0,100.0,90.0);//ceil
-		glColor3f(0,0,0);
-		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
-		glutSwapBuffers();
-		glFlush();
-		sleep(1);
-		glColor3f(1,0,0);
-		glRectf(0,0,100,100);
-		glColor3f(227/255.0,229/255.0,47/255.0);
-		glRectf(0.0,0.0,100.0,10.0);//floor
-		glRectf(0.0,100.0,100.0,90.0);//ceil
-		glColor3f(0,0,0);
-		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
-		glutSwapBuffers();
-		glFlush();
-		sleep(1);
-		glColor3f(0,0,0);
-		glRectf(0,0,100,100);
-		glColor3f(227/255.0,229/255.0,47/255.0);
-		glRectf(0.0,0.0,100.0,10.0);//floor
-		glRectf(0.0,100.0,100.0,90.0);//ceil
-		glColor3f(0,0,0);
-		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
-		glutSwapBuffers();
-		glFlush();
-		sleep(1);
-		glColor3f(1,0,0);
-		glRectf(0,0,100,100);
-		glColor3f(227/255.0,229/255.0,47/255.0);
-		glRectf(0.0,0.0,100.0,10.0);//floor
-		glRectf(0.0,100.0,100.0,90.0);//ceil
-		glColor3f(0,0,0);
-		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
-		glutSwapBuffers();
-		glFlush();
-		sleep(1);
-		glColor3f(0,0,0);
-		glRectf(0,0,100,100);
-		glColor3f(227/255.0,229/255.0,47/255.0);
-		glRectf(0.0,0.0,100.0,10.0);//floor
-		glRectf(0.0,100.0,100.0,90.0);//ceil
-		glColor3f(0,0,0);
-		renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
-		glutSwapBuffers();
-		glFlush();
-		sleep(1);
+		int flashcheck=0;
+		for(flashcheck=0;flashcheck<5;flashcheck++){
+			if(flashcheck%2==0){
+				glColor3f(1,0,0);
+				glRectf(0,0,100,100);
+			}else{
+				glColor3f(0,0,0);
+				glRectf(0,0,100,100);
+			}
+			glColor3f(227/255.0,229/255.0,47/255.0);
+			glRectf(0.0,0.0,100.0,10.0);//floor
+			glRectf(0.0,100.0,100.0,90.0);//ceil
+			glColor3f(0,0,0);
+			renderBitmapString(40,95,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
+			glutSwapBuffers();
+			glFlush();
+			sleep(1);
+		}
 		wflag=-1;
 		glColor3f(0.0,0.0,0.0);
 		glRectf(0.0,0.0,100.0,100.0);
 		glColor3f(1.0,0.0,0.0);
-		glColor3f(0,0,0);
+		glColor3f(1,0,0);
 		renderBitmapString(43,70,0,GLUT_BITMAP_HELVETICA_18,"GAME OVER");
 		glColor3f(227/255.0,229/255.0,47/255.0);
 		glRectf(0.0,0.0,100.0,10.0);//floor
@@ -321,9 +273,33 @@ void display(void){
 	}
 	else if(wflag==1){//Welcome Screen
 		wflag=0;
+		char prof[4][50]={"Prof. MS Bhargavi","Prof. Shruthiba A","Prof. N Thanuja","Prof. Anjini L"};int slide=0;
 		glColor3f(227/255.0,229/255.0,47/255.0);
 		glRectf(0.0,0.0,100.0,10.0);//floor
 		glRectf(0.0,100.0,100.0,90.0);//ceil
+
+		for(slide=0;slide<3;slide++){
+			glColor3f(0,0,0);
+			glRectf(0,10,100,90);
+			if(slide==0)
+				renderBitmapString(27,71,0,GLUT_BITMAP_HELVETICA_18,"A Bangalore Institute of Technology Production...");
+			else{//slide==1||2
+				renderBitmapString(27,71,0,GLUT_BITMAP_TIMES_ROMAN_24,"Under the able guidance of");
+				renderBitmapString(27,63,0,GLUT_BITMAP_HELVETICA_12,"Asst Prof");
+				renderBitmapString(27,60,0,GLUT_BITMAP_HELVETICA_18,"Dept of CS&E");
+				renderBitmapString(60,63,0,GLUT_BITMAP_HELVETICA_12,"Asst Prof");
+				renderBitmapString(60,60,0,GLUT_BITMAP_HELVETICA_18,"Dept of CS&E");
+				int arrInd=(slide-1)*2;
+				renderBitmapString(27,66,0,GLUT_BITMAP_HELVETICA_18,prof[arrInd]);
+				renderBitmapString(60,66,0,GLUT_BITMAP_HELVETICA_18,prof[(arrInd+1)]);
+			}
+			glutSwapBuffers();
+			glFlush();
+			sleep(2);
+		}
+
+
+		glColor3f(227/255.0,229/255.0,47/255.0);
 		renderBitmapString(40,70,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
 		renderBitmapString(36,11,0,GLUT_BITMAP_HELVETICA_12,"Pavan Kulkarni    -    Pulkit Vaish");
 		glColor3f(0.0,0.0,0.0);
