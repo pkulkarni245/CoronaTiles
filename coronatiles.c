@@ -277,21 +277,25 @@ void display(void){
 		glColor3f(227/255.0,229/255.0,47/255.0);
 		glRectf(0.0,0.0,100.0,10.0);//floor
 		glRectf(0.0,100.0,100.0,90.0);//ceil
-
-		for(slide=0;slide<3;slide++){
+		for(slide=0;slide<4;slide++){
 			glColor3f(0,0,0);
 			glRectf(0,10,100,90);
+			glColor3f(227/255.0,229/255.0,47/255.0);
 			if(slide==0)
 				renderBitmapString(27,71,0,GLUT_BITMAP_HELVETICA_18,"A Bangalore Institute of Technology Production...");
-			else{//slide==1||2
+			else if(slide==1||slide==2){
 				renderBitmapString(27,71,0,GLUT_BITMAP_TIMES_ROMAN_24,"Under the able guidance of");
 				renderBitmapString(27,63,0,GLUT_BITMAP_HELVETICA_12,"Asst Prof");
-				renderBitmapString(27,60,0,GLUT_BITMAP_HELVETICA_18,"Dept of CS&E");
+				renderBitmapString(27,60,0,GLUT_BITMAP_HELVETICA_12,"Dept of CS&E");
 				renderBitmapString(60,63,0,GLUT_BITMAP_HELVETICA_12,"Asst Prof");
-				renderBitmapString(60,60,0,GLUT_BITMAP_HELVETICA_18,"Dept of CS&E");
+				renderBitmapString(60,60,0,GLUT_BITMAP_HELVETICA_12,"Dept of CS&E");
 				int arrInd=(slide-1)*2;
 				renderBitmapString(27,66,0,GLUT_BITMAP_HELVETICA_18,prof[arrInd]);
 				renderBitmapString(60,66,0,GLUT_BITMAP_HELVETICA_18,prof[(arrInd+1)]);
+			}
+			if(slide==3){
+				glColor3f(0,0,0);
+				glRectf(0,0,100,100);
 			}
 			glutSwapBuffers();
 			glFlush();
@@ -300,6 +304,8 @@ void display(void){
 
 
 		glColor3f(227/255.0,229/255.0,47/255.0);
+		glRectf(0.0,0.0,100.0,10.0);//floor
+		glRectf(0.0,100.0,100.0,90.0);//ceil
 		renderBitmapString(40,70,0,GLUT_BITMAP_TIMES_ROMAN_24,"Corona Tiles");
 		renderBitmapString(36,11,0,GLUT_BITMAP_HELVETICA_12,"Pavan Kulkarni    -    Pulkit Vaish");
 		glColor3f(0.0,0.0,0.0);
