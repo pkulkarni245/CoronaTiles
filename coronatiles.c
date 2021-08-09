@@ -16,7 +16,7 @@ int level=1,lflag=1,wflag=1; //level_flag & welcome_flag init w/ 1
 float angle;
 double radius=3;
 int menu;
-
+static GLfloat theta[] = {0.0,0.0,0.0};
 
 
 void menuFunction(int n){
@@ -210,6 +210,82 @@ void drawProtocolPerson(){
 	glFlush();
 }
 
+void drawSalutePerson(){
+	float xa=8,ya=43,xb,yb;
+	float angle;
+	double radius=3;
+	glColor3f(1.0,1.0,0.6);
+	glBegin(GL_TRIANGLE_FAN);
+	glVertex2f(xa,ya);
+	for (angle=1.0f;angle<361.0f;angle+=0.2){
+		xb = xa+sin(angle)*radius;
+		yb = ya+cos(angle)*radius;
+		glVertex2f(xb,yb);
+	}
+	glEnd();
+	glColor3f(0.7,1.0,1.0);
+	glRectf(5.6,40.3,10.4,43.2);//mask
+	glBegin(GL_QUADS); 
+	glColor3f(  0.0f,  0.0f, 0.0f);	
+	glVertex2f(4,28.9);
+	glColor3f(  0.0f,  0.0f, 0.0f);
+	glVertex2f(12,28.9);
+	glColor3f(0.5,0.7,0.7);
+	  glVertex2f(12, 39.9);
+	glColor3f(0.5,0.7,0.7);
+	  glVertex2f(4,39.9 );
+	glEnd();
+	glBegin(GL_QUADS);	  
+	glColor3f(  0.0f,  0.0f, 0.0f);	
+	  glVertex2f(2,32);
+	glColor3f(  0.0f,  0.0f, 0.0f);
+	  glVertex2f(3.9,32);
+	glColor3f(0.7,0.8,1.0);
+	  glVertex2f(3.9, 39.9);
+	glColor3f(0.7,0.8,1.0);
+	  glVertex2f(2,39.9 );
+	glEnd();
+	glBegin(GL_QUADS);	  
+	glColor3f(  0.0f,  0.0f, 0.0f);	
+	  glVertex2f(12.1,32);
+	glColor3f(  0.0f,  0.0f, 0.0f);
+	  glVertex2f(13.9,32);
+	glColor3f(0.7,0.8,1.0);
+	  glVertex2f(13.9, 39.9);
+	glColor3f(0.7,0.8,1.0);
+	  glVertex2f(12.1,39.9 );
+	glEnd();	
+	glColor3f(0.7,1.0,1.0);
+	glRectf(3.4,30.8,3.8,31.9);//left glove thumb
+	glRectf(2.1,29,3.4,31.9);//left glove fingers
+	glRectf(12.1,30.8,12.6,31.9);//right glove thumb
+	glRectf(12.6,29,13.9,31.9);//right glove fingers
+	glBegin(GL_QUADS);	  
+	glColor3f(  0.0f,  0.0f, 0.0f);	
+	  glVertex2f(4.5,18);
+	glColor3f(  0.0f,  0.0f, 0.0f);
+	  glVertex2f(7.5,18);
+	glColor3f(0.2,0.2,0.6);
+	  glVertex2f(7.5, 28.5);
+	glColor3f(0.2,0.2,0.6);
+	  glVertex2f(4.5,28.5);
+	glEnd();
+	glBegin(GL_QUADS);	  
+	glColor3f(  0.0f,  0.0f, 0.0f);	
+	  glVertex2f(8.5,18);
+	glColor3f(  0.0f,  0.0f, 0.0f);
+	  glVertex2f(11.5,18);
+	glColor3f(0.2,0.2,0.6);
+	  glVertex2f(11.5, 28.5);
+	glColor3f(0.2,0.2,0.6);
+	  glVertex2f(8.5,28.5);
+	glEnd();
+	glColor3f(0.7,0.0,0.7);
+	glRectf(5,16.8,7,17.9);//right foot
+	glRectf(9,16.8,11,17.9);//right foot
+	glFlush();
+}
+
 void renderBitmapString(float x,float y,float z,void *font,char*string){
 	char *c;
 	glRasterPos3f(x, y,z);
@@ -337,6 +413,21 @@ void display(void){
 		glColor3f(0.0,0.0,0.0);
 		renderBitmapString(32,5,0,GLUT_BITMAP_HELVETICA_18,"Pavan Kulkarni    -    Pulkit Vaish");
 		drawProtocolPerson();
+		glPushMatrix();
+		glTranslatef(30.0,5,0);
+		glScalef(.7,.7,0);
+		drawSalutePerson();
+		glPopMatrix();
+		glPushMatrix();
+		glTranslatef(50.0,5,0);
+		glScalef(.7,.7,0);
+		drawSalutePerson();
+		glPopMatrix();
+		glPushMatrix();
+		glTranslatef(70.0,5,0);
+		glScalef(.7,.7,0);
+		drawSalutePerson();
+		glPopMatrix();
 		glutSwapBuffers();
 		glFlush();
 	}
@@ -411,7 +502,6 @@ void movePersonDown(){
 	if(wflag!=-1)
 		glutPostRedisplay();
 }
-
 
 void mouse(int button, int state, int x, int y){
 	
